@@ -49,7 +49,8 @@ function playNote() {
 document.addEventListener('keydown', (event) => {
     if (slidePositions[event.key]) {
         currentSlide = slidePositions[event.key];
-        console.log(`Slide changed to: ${currentSlide}`);
+        currentEmbouchure = 'none'; // Reset embouchure when switching slides
+        console.log(`Slide changed to: ${currentSlide}, Embouchure reset to none`);
     } else if (embouchureLevels[event.key]) {
         currentEmbouchure = embouchureLevels[event.key];
         console.log(`Embouchure changed to: ${currentEmbouchure}`);
