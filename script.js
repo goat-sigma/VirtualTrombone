@@ -19,24 +19,40 @@ const audioMap = {
     'pos1_level4': 'sounds/pos1_level4.mp3',
     'pos1_level5': 'sounds/pos1_level5.mp3',
     'pos2_none': 'sounds/pos2_none.mp3',
+    'pos2_level1': 'sounds/pos2_level1.mp3',
+    'pos2_level2': 'sounds/pos2_level2.mp3',
+    'pos2_level3': 'sounds/pos2_level3.mp3',
+    'pos2_level4': 'sounds/pos2_level4.mp3',
+    'pos2_level5': 'sounds/pos2_level5.mp3',
+    'pos3_none': 'sounds/pos3_none.mp3',
+    'pos3_level1': 'sounds/pos3_level1.mp3',
+    'pos3_level2': 'sounds/pos3_level2.mp3',
+    'pos3_level3': 'sounds/pos3_level3.mp3',
+    'pos3_level4': 'sounds/pos3_level4.mp3',
+    'pos3_level5': 'sounds/pos3_level5.mp3',
     // Add all other combinations...
 };
 
 function playNote() {
     const noteKey = `${currentSlide}_${currentEmbouchure}`;
-    const soundFile = audioMap[noteKey];
-    if (soundFile) {
-        const audio = new Audio(soundFile);
+    console.log(`Attempting to play: ${noteKey}`);
+    
+    if (audioMap[noteKey]) {
+        const audio = new Audio(audioMap[noteKey]);
         audio.play();
         document.getElementById('display').innerText = `Playing: ${noteKey}`;
+    } else {
+        document.getElementById('display').innerText = `No sound for: ${noteKey}`;
     }
 }
 
 document.addEventListener('keydown', (event) => {
     if (slidePositions[event.key]) {
         currentSlide = slidePositions[event.key];
+        console.log(`Slide changed to: ${currentSlide}`);
     } else if (embouchureLevels[event.key]) {
         currentEmbouchure = embouchureLevels[event.key];
+        console.log(`Embouchure changed to: ${currentEmbouchure}`);
     }
     playNote();
 });
